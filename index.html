@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="dj_webkit dj_chrome dj_contentbox">
+        <head>
+            
+            <meta charset="utf-8">
+            <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Esri JS 4.0 Project</title>
+       <link rel="stylesheet" href="https://jsqa.arcgis.com/4.0/esri/css/main.css">
+        <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="bootstrap/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+       <script src="https://jsqa.arcgis.com/4.0/"></script> 
+       <script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+       <link href="Site.css" rel="stylesheet">
+    </head> 
+    <body>
+     <div class="container-fluid">
+       <div class="row">
+           <div class="col-md-10" style="postion: relative">
+                <div id="searchDiv"></div>
+                <div id="siteMap"></div>
+                    
+                 <div id="environmentDiv" style="display: none">
+                    <table>
+                    <tr>
+                        <td>Time of day:</td>
+                        <td>
+                        <select id="timeOfDaySelect" class="form-control">
+                            <option value="Sun Mar 15 2015 09:00:00 GMT+0100 (CET)">Morning</option>
+                            <option value="Sun Mar 15 2015 12:00:00 GMT+0100 (CET)">Noon</option>
+                            <option value="Sun Mar 15 2015 16:00:00 GMT+0100 (CET)">Afternoon</option>
+                            <option value="Sun Mar 15 2015 18:00:00 GMT+0100 (CET)">Evening</option>
+                        </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 10px">Direct shadows:</td>
+                        <td style="padding-top: 10px">
+                        <input id="directShadowsInput" type="checkbox" checked="yes">
+                        </td>
+                    </tr>
+                    </table>
+                </div>
+       
+         <div id="rotationButtons" style="display: none">
+            <button id="rotateAntiClockwiseSpan" 
+            title="Rotate 90°"
+            onclick="NavigationHelper.rotateView(-1)">↻</button>
+            <button class="tiltButton" onclick="NavigationHelper.tiltView()">
+                <i class="fa fa-eye"></i>
+            </button>
+            <button id="rotateClockwiseSpan" 
+            title="Rotate 90°"
+            onclick="NavigationHelper.rotateView(1)">↺</button>
+        </div>
+        
+         <div id="webglNotSupportedDiv">
+            WebGL is not supported on your platform/browser
+        </div>
+       
+       </div>
+       <div class="col-md-2" style="overflow: auto">
+        <div style="margin-bottom: 8px">
+            <fieldset>
+            <legend>Map Type</legend>
+                <select id="mapType" class="form-control">
+                    <option value="1">2D Map View</option>
+                    <option value="2">3D Scene View</option>      
+                    <option value="3">3D Elevation View</option>
+                    <option value="4">3D Transporation Layer</option>
+                    <option value="5">3D Scene W/Camera Controls</option>
+                    <option value="6">3D Viewshed (10 mile view radius)</option>
+                    <option value="7">3D Scene W/Shadows</option>
+                    <option value="8">2D Popup Example</option>
+                </select>
+            </fieldset>
+        </div>   
+        
+        <div style="margin-bottom: 14px">
+            <fieldset>
+            <legend>Layers</legend>
+                <select id="basemaps" class="form-control">
+                    <option value="streets">Streets</option>
+                    <option value="satellite">Satellite</option>      
+                    <option value="hybrid">Hybrid</option>
+                    <option value="topo">Topo</option>
+                    <option value="gray">Gray</option>
+                    <option value="dark-gray">Dark Gray</option>
+                    <option value="oceans">Oceans</option>
+                    <option value="national-geographic">National Geographic</option>
+                    <option value="terrain">Terrain</option>
+                    <option value="osm">OSM</option>
+                </select>
+            </fieldset>
+        </div>   
+
+        <fieldset>
+            <legend>Widgets</legend>
+             <div class="buttonMargin">
+                <button class="wet-asphalt-flat-button" onclick="MapHelper.locationWidget()">
+                    Location
+                </button>  
+            </div>
+            <div class="buttonMargin">            
+                <button class="wet-asphalt-flat-button" onclick="MapHelper.homeWidget()">
+                    Home
+                </button>   
+            </div>
+            <div class="buttonMargin">            
+                <button class="wet-asphalt-flat-button" onclick="MapHelper.searchWidget()">
+                    Search
+                </button>   
+            </div>
+            <div class="buttonMargin">            
+                <button class="wet-asphalt-flat-button" onclick="MapHelper.toggleWidget()">
+                    Toggle
+                </button>   
+            </div>
+        </fieldset>    
+        
+        <div class="latLong">
+            <p>Center Latitude: <br /><span id="latLabel"></span></p>
+            <p>Center Longitude: <br /><span id="longLabel"></span></p>
+        </div>   
+        
+        
+        <fieldset>
+            <legend>2D Drawing</legend>
+        
+            <div style="margin-top: 3px">            
+                <button class="graphite-flat-button" onclick="MapHelper.plotCenterPoint()">
+                    Plot Center
+                </button>   
+            </div>
+            <div style="margin-top: 8px">            
+                <input type="checkbox" id="trackCP" /> Track center point 
+            </div>
+        
+        </fieldset> 
+        
+        <fieldset>
+            <legend>Navigate To</legend>
+   
+            <p>lat: <input type="text" id="latNav" style="width: 75px" /></p>
+            <p>long: <input type="text" id="longNav" style="width: 75px" /></p>
+            <button class="clouds-flat-button" 
+                onclick="NavigationHelper.goToLatLong()">
+                Submit
+            </button>
+        </fieldset> 
+                    
+         <fieldset style="display: none">
+             <legend>Geocode</legend>    
+            <p>Address: <br />
+                <textarea id="geocodeAddress" class="addressInput">
+                    
+                </textarea>         
+            </p>
+                        <button class="clouds-flat-button" 
+                onclick="NavigationHelper.geocode()">
+                Submit
+            </button>
+           </fieldset>
+       </div>
+       </div> 
+     </div>      
+    
+    <script src="Site.js"></script>
+    <script src="MapHelper.js"></script>
+    <script src="NavigationHelper.js"></script>
+    <script src="WatchHelper.js"></script>
+    <script src="startup.js"></script>   
+    <script src="notify.js"></script>
+    </body>       
+</html>
+
