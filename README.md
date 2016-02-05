@@ -16,4 +16,4 @@ start will start the lite server to run the application.
 
 ### Who do I talk to? ###
 
-You can reach me on Twitter @jk_powerup
+You can reach SSP on Twitter @SSPInnovations
