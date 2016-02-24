@@ -1,3 +1,4 @@
+/* global Site */
 var Site = {
     map: null,
     esriMap: null,

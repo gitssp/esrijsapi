@@ -1,3 +1,4 @@
+/* global $ */
 var NavigationHelper = {
       goToLatLong: function () {
         var lat = $('#latNav').val();

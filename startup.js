@@ -97,8 +97,8 @@
                 MapHelper.loadSceneElevationView();
                 break; 
             case '4':
-                var options = {transportationLayer: true};
-                MapHelper.loadSceneView(options);
+                let transOptions = {transportationLayer: true};
+                MapHelper.loadSceneView(transOptions);
                 break;   
             case '5':
                 MapHelper.loadSceneCameraView();
@@ -112,8 +112,8 @@
                 MapHelper.loadShadowScene();
                 break;      
            case '8':
-                var options = {popupExample: true};
-                MapHelper.loadMapView(options);
+                let popupOptions = {popupExample: true};
+                MapHelper.loadMapView(popupOptions);
                 break;          
         }
     });
